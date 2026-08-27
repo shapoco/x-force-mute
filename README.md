@@ -14,7 +14,7 @@ X has a built-in mute feature, but it does not apply to **Lists** — muted user
   - a repost by a muted user is hidden,
   - a repost **of** a muted user is hidden,
   - if the **quoted** post matches, the quoting post is hidden together with it.
-- Settings UI is reachable from a 🙈 button in the bottom-left corner of the page.
+- Settings UI is reachable from a 🙈 button in the bottom-right corner of the page.
 - Rules are stored in the user script manager, so they survive reloads and are never sent anywhere.
 
 ## Installation
@@ -29,7 +29,7 @@ X has a built-in mute feature, but it does not apply to **Lists** — muted user
 
 ## Usage
 
-1. Open [x.com](https://x.com/) and click the **🙈 button in the bottom-left corner** of the page.
+1. Open [x.com](https://x.com/) and click the **🙈 button in the bottom-right corner** of the page.
 2. Enter your mute rules in the text box, **one rule per line**.
 3. Press **Save**. The timeline is filtered immediately — no reload needed.
 

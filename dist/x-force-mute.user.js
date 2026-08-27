@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         X Force Mute
 // @namespace    https://github.com/shapoco/x-force-mute
-// @version      1.0.0
+// @version      1.0.1
 // @description  Hide posts on X (Twitter) by screen name, keyword, or regexp - works on Lists, where the built-in mute does not.
 // @description:ja X (Twitter) のリストでも効くミュート。screen name / キーワード / 正規表現にマッチしたポスト (リポスト・引用リポスト含む) を非表示にします。
 // @author       shapoco
@@ -239,11 +239,11 @@
     style.id = 'xfm-style';
     style.textContent = [
       '[data-xfm-muted="1"]{display:none !important;}',
-      '.xfm-root{position:fixed;left:16px;bottom:16px;z-index:2147483000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}',
+      '.xfm-root{position:fixed;right:16px;bottom:16px;z-index:2147483000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;}',
       '.xfm-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(127,127,127,.5);background:rgba(255,255,255,.92);color:inherit;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;padding:0;transition:transform .12s ease;}',
       '.xfm-btn:hover{transform:scale(1.08);}',
       '.xfm-btn[data-active="1"]{border-color:#1d9bf0;box-shadow:0 0 0 2px rgba(29,155,240,.35),0 2px 8px rgba(0,0,0,.25);}',
-      '.xfm-panel{position:absolute;left:0;bottom:56px;width:380px;max-width:calc(100vw - 32px);max-height:min(70vh,560px);display:none;flex-direction:column;gap:8px;background:#fff;color:#0f1419;border:1px solid rgba(127,127,127,.4);border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.35);padding:14px;box-sizing:border-box;}',
+      '.xfm-panel{position:absolute;right:0;bottom:56px;width:380px;max-width:calc(100vw - 32px);max-height:min(70vh,560px);display:none;flex-direction:column;gap:8px;background:#fff;color:#0f1419;border:1px solid rgba(127,127,127,.4);border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.35);padding:14px;box-sizing:border-box;}',
       '.xfm-panel[data-open="1"]{display:flex;}',
       '.xfm-title{font-size:15px;font-weight:700;margin:0;}',
       '.xfm-help{font-size:11px;line-height:1.6;margin:0;opacity:.7;white-space:pre-line;}',
