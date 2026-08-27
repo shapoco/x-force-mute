@@ -16,7 +16,7 @@ X has a built-in mute feature, but it does not apply to **Lists** — muted user
   - if the **quoted** post matches, the quoting post is hidden together with it.
 - On a muted user's **profile page** (`x.com/username`), that user's own `@username` rule is ignored so their posts stay visible — if you went there on purpose, nothing is hidden.
 - Settings UI is reachable from a 🙈 button in the bottom-right corner of the page.
-- Rules are stored in the user script manager, so they survive reloads and are never sent anywhere.
+- Rules are stored in the user script manager, so they survive reloads; the script never sends them anywhere (see Notes).
 
 ## Installation
 
@@ -66,6 +66,8 @@ This hides everything posted (or reposted, or quoted) by `@spam_account` and `@a
 - Keyword and regular expression rules are matched against the **post body only** (the text of the post plus the text of a quoted post) — not against display names, alt text, or link previews.
 - Matching runs on what is rendered in the page, so a post is hidden the moment it appears in the timeline. Nothing is reported to X: the posts are simply not displayed.
 - Rules are saved per browser profile through the user script manager's storage (`GM_setValue`), falling back to `localStorage`.
+- This script never sends your rules off your device. They are stored in the browser only.
+- The safety of the stored rules (e.g. whether other scripts or extensions can read them, or whether they get synced elsewhere) is subject to the security of your browser and your user script manager (extension).
 
 ## License
 

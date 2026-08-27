@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         X Force Mute
 // @namespace    https://github.com/shapoco/x-force-mute
-// @version      1.1.0
+// @version      1.2.0
 // @description  Hide posts on X (Twitter) by screen name, keyword, or regexp - works on Lists, where the built-in mute does not.
 // @description:ja X (Twitter) のリストでも効くミュート。screen name / キーワード / 正規表現にマッチしたポスト (リポスト・引用リポスト含む) を非表示にします。
 // @author       shapoco
@@ -269,6 +269,7 @@
       '.xfm-textarea{flex:1 1 auto;min-height:200px;resize:vertical;box-sizing:border-box;width:100%;padding:8px;border:1px solid rgba(127,127,127,.5);border-radius:8px;background:transparent;color:inherit;font-family:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;font-size:13px;line-height:1.5;}',
       '.xfm-textarea:focus{outline:2px solid #1d9bf0;outline-offset:-1px;}',
       '.xfm-status{font-size:11px;opacity:.7;margin:0;}',
+      '.xfm-note{font-size:10px;opacity:.55;margin:0;}',
       '.xfm-footer{display:flex;justify-content:flex-end;gap:8px;}',
       '.xfm-action{padding:7px 16px;border-radius:9999px;border:1px solid rgba(127,127,127,.5);background:transparent;color:inherit;font-size:13px;font-weight:700;cursor:pointer;}',
       '.xfm-action.xfm-primary{background:#1d9bf0;border-color:#1d9bf0;color:#fff;}',
@@ -289,9 +290,9 @@
   function updateBadge() {
     if (!ui) return;
     ui.button.setAttribute('data-active', hasAnyRule() ? '1' : '0');
-    ui.button.title = 'Force Mute' + (mutedCount ? ' — ' + mutedCount + ' 件を非表示中' : '');
+    ui.button.title = 'Force Mute' + (mutedCount ? ' — ' + mutedCount + ' post' + (mutedCount === 1 ? '' : 's') + ' hidden' : '');
     if (ui.panel.getAttribute('data-open') === '1') {
-      ui.status.textContent = 'このページで ' + mutedCount + ' 件のポストを非表示中';
+      ui.status.textContent = mutedCount + ' post' + (mutedCount === 1 ? '' : 's') + ' hidden on this page';
     }
   }
 
@@ -333,18 +334,22 @@
     var help = document.createElement('p');
     help.className = 'xfm-help';
     help.textContent =
-      '1 行に 1 つずつ指定します。\n' +
-      '  @screen_name … その人のポスト / リポスト / 引用元にマッチ\n' +
-      '  /正規表現/ … 本文に正規表現でマッチ (フラグ省略時は i)\n' +
-      '  それ以外 … 本文に部分一致 (大文字小文字は無視)';
+      'One rule per line.\n' +
+      '  @screen_name … matches the author, reposter, or quoted author\n' +
+      '  /regexp/ … regular expression on the post body (flag i if omitted)\n' +
+      '  anything else … case-insensitive substring of the post body';
 
     var textarea = document.createElement('textarea');
     textarea.className = 'xfm-textarea';
     textarea.spellcheck = false;
-    textarea.placeholder = '@spam_user\n@another_user\nうざいキーワード\n/(?:速報|拡散希望)/';
+    textarea.placeholder = '@spam_user\n@another_user\nannoying keyword\n/(?:breaking|giveaway)/';
 
     var status = document.createElement('p');
     status.className = 'xfm-status';
+
+    var note = document.createElement('p');
+    note.className = 'xfm-note';
+    note.textContent = 'Rules are stored locally in your browser and are never sent anywhere.';
 
     var footer = document.createElement('div');
     footer.className = 'xfm-footer';
@@ -365,13 +370,14 @@
     panel.appendChild(help);
     panel.appendChild(textarea);
     panel.appendChild(status);
+    panel.appendChild(note);
     panel.appendChild(footer);
 
     var button = document.createElement('button');
     button.type = 'button';
     button.className = 'xfm-btn';
     button.textContent = '🙈';
-    button.setAttribute('aria-label', 'Force Mute の設定');
+    button.setAttribute('aria-label', 'Force Mute settings');
 
     root.appendChild(panel);
     root.appendChild(button);
