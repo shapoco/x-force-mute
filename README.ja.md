@@ -2,7 +2,7 @@
 
 [English README](README.md)
 
-**X (Twitter)** のポストを screen name・キーワード・正規表現で非表示にする [Violentmonkey](https://violentmonkey.github.io/) 用ユーザースクリプトです。
+**X (Twitter)** のポストを screen name・キーワード・正規表現で非表示にする [Tampermonkey](https://www.tampermonkey.net/) 用ユーザースクリプトです。
 
 X には特定のユーザーをミュートする機能がありますが、**リストでは効かず**、ミュートしたはずのユーザーのポストが表示されてしまいます。このスクリプトはリストを含むすべてのタイムラインでポストを非表示にします。
 
@@ -19,7 +19,7 @@ X には特定のユーザーをミュートする機能がありますが、**�
 
 ## インストール
 
-1. ユーザースクリプトマネージャをインストールします。[Violentmonkey](https://violentmonkey.github.io/) を推奨しますが、Tampermonkey でも動作します。
+1. ユーザースクリプトマネージャをインストールします。[Tampermonkey](https://www.tampermonkey.net/) を推奨しますが、Violentmonkey でも動作します。
 2. 以下のリンクを開き、マネージャの表示に従ってインストールします。
 
    **[x-force-mute.user.js をインストール](https://raw.githubusercontent.com/shapoco/x-force-mute/main/dist/x-force-mute.user.js)**

@@ -2,7 +2,7 @@
 
 [日本語版 README](README.ja.md)
 
-A [Violentmonkey](https://violentmonkey.github.io/) user script that hides posts on **X (Twitter)** by screen name, keyword, or regular expression.
+A [Tampermonkey](https://www.tampermonkey.net/) user script that hides posts on **X (Twitter)** by screen name, keyword, or regular expression.
 
 X has a built-in mute feature, but it does not apply to **Lists** — muted users still show up there. This script hides them anyway, on every timeline.
 
@@ -19,7 +19,7 @@ X has a built-in mute feature, but it does not apply to **Lists** — muted user
 
 ## Installation
 
-1. Install a user script manager. [Violentmonkey](https://violentmonkey.github.io/) is recommended; Tampermonkey works as well.
+1. Install a user script manager. [Tampermonkey](https://www.tampermonkey.net/) is recommended; Violentmonkey works as well.
 2. Open the script and let the manager install it:
 
    **[Install x-force-mute.user.js](https://raw.githubusercontent.com/shapoco/x-force-mute/main/dist/x-force-mute.user.js)**
