@@ -14,6 +14,7 @@ X has a built-in mute feature, but it does not apply to **Lists** — muted user
   - a repost by a muted user is hidden,
   - a repost **of** a muted user is hidden,
   - if the **quoted** post matches, the quoting post is hidden together with it.
+- On a muted user's **profile page** (`x.com/username`), that user's own `@username` rule is ignored so their posts stay visible — if you went there on purpose, nothing is hidden.
 - Settings UI is reachable from a 🙈 button in the bottom-right corner of the page.
 - Rules are stored in the user script manager, so they survive reloads and are never sent anywhere.
 

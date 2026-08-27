@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         X Force Mute
 // @namespace    https://github.com/shapoco/x-force-mute
-// @version      1.0.1
+// @version      1.1.0
 // @description  Hide posts on X (Twitter) by screen name, keyword, or regexp - works on Lists, where the built-in mute does not.
 // @description:ja X (Twitter) のリストでも効くミュート。screen name / キーワード / 正規表現にマッチしたポスト (リポスト・引用リポスト含む) を非表示にします。
 // @author       shapoco
@@ -148,11 +148,30 @@
     return buf.join('\n');
   }
 
+  // プロフィールページ (x.com/username/...) ならそのユーザーの screen name を返す
+  var RESERVED_PATHS = {
+    home: 1, explore: 1, notifications: 1, messages: 1, i: 1, search: 1,
+    settings: 1, compose: 1, lists: 1, communities: 1, jobs: 1, premium: 1,
+    login: 1, signup: 1, logout: 1, hashtag: 1, intent: 1, account: 1,
+    bookmarks: 1, tos: 1, privacy: 1, about: 1, download: 1, share: 1
+  };
+
+  function profileHandleFromLocation() {
+    var seg = location.pathname.slice(1).split('/')[0];
+    if (!/^[A-Za-z0-9_]{1,20}$/.test(seg)) return '';
+    seg = seg.toLowerCase();
+    return RESERVED_PATHS[seg] ? '' : seg;
+  }
+
   function matches(article) {
     var i;
 
+    // プロフィールページでは、そのユーザー自身の @username ルールは無視する
+    var profile = profileHandleFromLocation();
+
     var handles = collectHandles(article);
     for (i = 0; i < handles.length; i++) {
+      if (handles[i] === profile) continue;
       if (rules.handles[handles[i]]) return true;
     }
 
